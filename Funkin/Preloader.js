@@ -6,8 +6,7 @@ const cookieParser = require('cookie-parser');
 const fastify = require("fastify")({
   logger: false
 });
-const secretkey = 'TfDY3NU9Q4hKqMojkIM47QTzamUkKKU9';
-const clientid = '4335';
+
 let Sequelize = require('sequelize');
 var express = require('express');
 var app = express();
@@ -57,28 +56,6 @@ fastify.register(require("@fastify/view"), {
     ejs: require("ejs"),
   },
 });
-
-const db = mysql.createConnection({
-  host: 'sql208.epizy.com',
-  user: 'epiz_33483791',
-  password: 'FxvM2YwiytChLMo',
-  database: 'epiz_33483791_Games',
-  port:3306
-});
-
-db.connect(function(error) {
-  if (error) {
-    if (!error.fatal) {
-      return;
-    } else {
-      console.log(error);
-    }
-  }
-  else {
-    console.log("Connected To DB");
-  }
-});
-db.end();
 
 app.get('/', function(req, res) {
   res.render(__dirname + '/src/index.ejs', {
